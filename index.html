@@ -30,7 +30,8 @@
           </div>
           <div class="item-desc">
             <h5>B.A. Baracus</h5>
-            <p>Lorem  dolorem!</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
           </div>
         </article>
         <article class="item">
@@ -117,7 +118,7 @@
       </div>
     </div>
     <div id="modalDetail" class="modal d-none">
-      <div class="modal-content">
+      <div class="modal-content" id="modalContent">
         <div class="modal-body d-flex">
           <div class="modal-image">
             <img src="./assets/images/profile-1.png" alt="B.A. Baracus">
@@ -178,28 +179,41 @@
       })
     }
     window.addEventListener("load", mounted);
-
-    fetch("https://jsonplaceholder.typicode.com/user")
-      .then(response => response.json())
-      .then(data => {
-        console.log("Janji Manis : ", data);
-      }).catch((error) => {
-        console.log(error);
-      });
     
-    const promise = new Promise((resolve, reject) => {
-      if (false) {
-        resolve("Success!");
-      } else {
-        reject("Error!");
-      }
-    });
+    //Display modal when item is clicked
+    const itemsQuery = document.querySelectorAll("#items .item");
+    const modal = document.querySelector("#modalDetail");
+    const itemsArr = Array.from(itemsQuery);
+    const editButton = document.querySelector(".modal-content .btn")
 
-    promise.then(result => {
-      console.log(result);
-    }).catch(error => {
-      console.log(error);
-    });
+    itemsArr.forEach(function(item, index) {
+       item.addEventListener('click', function(){
+        if(modal.classList.contains("d-none")){
+          //Get all content for modal
+          const name = item.querySelector(".item-desc h5").innerText;
+          const ipk = item.querySelector(".ipk").innerText;
+          const desc = item.querySelector(".item-desc p").innerText;
+          const img = item.querySelector(".item-image img").getAttribute('src');
+          
+          //Set all content for modal
+          modal.querySelector(".modal-desc h3").innerText = name;
+          modal.querySelector(".modal-desc .ipk").innerText = ipk;
+          modal.querySelector(".modal-desc p").innerText = desc;
+          modal.querySelector(".modal-image img").setAttribute("src", img);
+          modal.classList.remove("d-none");
+        }
+       })
+     })
+     
+    modal.addEventListener("click", function(e){
+      const isClosest = e.target.closest("#modalContent");
+      console.log(isClosest);
+      if(!isClosest && !modal.classList.contains("d-none")){
+        modal.classList.add("d-none");
+      }
+     })
+
+
   </script>
 </body>
 </html>
