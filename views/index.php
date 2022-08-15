@@ -27,7 +27,7 @@
       </div>
       <div id="items" class="items">
         <?php foreach($kumpulan_mahasiswa as $mahasiswa):?>
-        <article class="item"
+        <article class="item" id="item"
           data-id="<?php echo $mahasiswa->id?>"
           data-src="<?php echo $mahasiswa->image_url?>"
           data-name="<?php echo $mahasiswa->nama?>"
@@ -62,7 +62,7 @@
         <div class="modal-footer">
           <div class="d-flex justify-between">
             <a href="" class="btn btn-secondary btn-link btn-large font-semibold">Edit</a>
-            <form class="d-inline-block" method="POST" action="/index.html" onsubmit="if(!confirm('Apakah yakin dihapus?')) return false">
+            <form class="d-inline-block" method="POST" action="/delete" onsubmit="if(!confirm('Apakah yakin dihapus?')) return false">
               <input type="hidden" value="DELETE" name="METHOD">
               <button class="btn btn-light btn-link btn-large" type="submit">Hapus</button>
             </form>
@@ -91,6 +91,7 @@
       const elemDesc = document.querySelector('#modalDetail .modal-body p');
       const elemImg = document.querySelector('#modalDetail .modal-image img');
       const elemBtnEdit = document.querySelector('#modalDetail .modal-footer a');
+      const elemBtnDel = document.querySelector('#modalDetail .modal-footer input'); 
 
       elemModal.classList.remove('d-none');
       elemName.innerText = e.getAttribute('data-name');
@@ -98,6 +99,7 @@
       elemDesc.innerText = e.getAttribute('data-desc');
       elemImg.setAttribute('src', e.getAttribute('data-src'));
       elemBtnEdit.setAttribute('href', 'edit?id=' + e.getAttribute('data-id'));
+      elemBtnDel.setAttribute('value', e.getAttribute('data-id'));
     }
 
     function mounted() {
