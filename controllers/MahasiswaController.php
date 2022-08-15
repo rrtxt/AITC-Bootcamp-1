@@ -126,7 +126,7 @@ class MahasiswaController{
 
     }
     public function delete(){
-        $id = $_POST['item-selected_id'];
+        $id = $_POST['item-selected-id'];
         $kumpulan_mahasiswa = json_decode(file_get_contents('./data/mahasiswa.json'));
 
         $index = array_search($id, array_column($kumpulan_mahasiswa, 'id'));
