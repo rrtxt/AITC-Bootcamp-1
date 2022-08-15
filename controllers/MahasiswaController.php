@@ -66,9 +66,11 @@ class MahasiswaController{
                 exit;
             }
         }
-
+        $kumpulan_mahasiswa = json_decode(file_get_contents('./data/mahasiswa.json'));
+        $id = count($kumpulan_mahasiswa) + 1;
         // simpan data
         $data = (object) [
+            "id" => $id,
             "nama" => $_POST['nama'],
             "ipk" => $_POST['ipk'],
             "biodata" => $_POST['biodata'],
