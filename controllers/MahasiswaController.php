@@ -93,6 +93,7 @@ class MahasiswaController{
         foreach ($kumpulan_mahasiswa as $mahasiswa){
             if($mahasiswa->id == $id){
                 $data_mahasiswa = $mahasiswa;
+                break;
             }
         }
 
@@ -104,8 +105,28 @@ class MahasiswaController{
 
         include './views/edit.php';
     }
+    public function update(){
+        $id = $_POST['id'];
+        $updated_name = $_POST['nama'];
+        $updated_ipk = $_POST['ipk'];
+        $updated_biodata = $_POST['biodata'];
+
+        $kumpulan_mahasiswa = json_decode(file_get_contents('./data/mahasiswa.json'));
+
+        $index = array_search($id, array_column($kumpulan_mahasiswa,'id'));
+
+        $kumpulan_mahasiswa[$index]->nama = $updated_name;
+        $kumpulan_mahasiswa[$index]->ipk = $updated_ipk;
+        $kumpulan_mahasiswa[$index]->biodata = $updated_biodata;
+
+        file_put_contents('./data/mahasiswa.json',json_encode($kumpulan_mahasiswa, JSON_PRETTY_PRINT));
+        header('Location: ' . 'http://' . $_SERVER['HTTP_HOST']);
+        exit;
+
+
+    }
     public function delete(){
-        $id = $_POST['METHOD'];
+        $id = $_POST['item-selected_id'];
         $kumpulan_mahasiswa = json_decode(file_get_contents('./data/mahasiswa.json'));
 
         $index = array_search($id, array_column($kumpulan_mahasiswa, 'id'));

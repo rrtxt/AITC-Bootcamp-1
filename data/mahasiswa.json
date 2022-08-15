@@ -2,9 +2,9 @@
     {
         "id": 1,
         "nama": "B.A. Baracus",
-        "biodata": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum harum accusantium omnis?",
+        "biodata": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum harum accusantium omnis? nani",
         "image_url": ".\/assets\/images\/profile-1.png",
-        "ipk": 3.5
+        "ipk": "3.5"
     },
     {
         "id": 2,

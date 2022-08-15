@@ -63,7 +63,7 @@
           <div class="d-flex justify-between">
             <a href="" class="btn btn-secondary btn-link btn-large font-semibold">Edit</a>
             <form class="d-inline-block" method="POST" action="/delete" onsubmit="if(!confirm('Apakah yakin dihapus?')) return false">
-              <input type="hidden" value="DELETE" name="METHOD">
+              <input type="hidden" value="DELETE" name="item-selected_id">
               <button class="btn btn-light btn-link btn-large" type="submit">Hapus</button>
             </form>
           </div>
